@@ -1,5 +1,5 @@
 [package]
-description = "Parity Ethereum client"
+description = "Velas blockchain client"
 name = "parity-ethereum"
 # NOTE Make sure to update util/version/Cargo.toml as well
 version = "2.7.2"
@@ -119,7 +119,7 @@ path = "parity/lib.rs"
 
 [[bin]]
 path = "parity/main.rs"
-name = "parity"
+name = "velasblockchain"
 
 [profile.release]
 debug = false
