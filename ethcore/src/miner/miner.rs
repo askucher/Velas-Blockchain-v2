@@ -108,7 +108,7 @@ pub enum BlockPreparationStatus {
 /// Gas price should be later overwritten externally
 /// for instance by a dynamic gas price mechanism or CLI parameter.
 /// This constant controls the initial value.
-const DEFAULT_MINIMAL_GAS_PRICE: u64 = 20_000_000_000;
+const DEFAULT_MINIMAL_GAS_PRICE: u64 = 21_000;
 
 /// Allowed number of skipped transactions when constructing pending block.
 ///
@@ -949,8 +949,7 @@ impl miner::MinerService for Miner {
 	}
 
 	fn sensible_gas_price(&self) -> U256 {
-		// 10% above our minimum.
-		self.transaction_queue.current_worst_gas_price() * 110u32 / 100
+		cmp::max(self.transaction_queue.current_worst_gas_price(), DEFAULT_MINIMAL_GAS_PRICE.into())
 	}
 
 	fn sensible_gas_limit(&self) -> U256 {
